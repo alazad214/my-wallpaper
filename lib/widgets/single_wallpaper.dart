@@ -15,26 +15,23 @@ class SingleWallpaper extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
           }
-          return GridView.builder(
-              itemCount: snapshot.data!.docs.length,
-              primary: false,
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 15,
-                  childAspectRatio: 0.8),
-              itemBuilder: (_, index) {
-                final data = snapshot.data!.docs[index];
-
-                return InkWell(
-                  onTap: () {
-                    Get.to(() => Details(data["img"]));
-                  },
-                  child: Hero(
-                    tag: data["img"],
+          return SizedBox(
+            height: 200,
+            child: ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                shrinkWrap: true,
+                primary: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) {
+                  final data = snapshot.data!.docs[index];
+                  return InkWell(
+                    onTap: () {
+                      Get.to(() => Details(data["img"]));
+                    },
                     child: Container(
-                      width: double.infinity,
+                      height: 150,
+                      width: 130,
+                      margin: const EdgeInsets.symmetric(horizontal: 3),
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                           color: Colors.white38,
@@ -50,9 +47,9 @@ class SingleWallpaper extends StatelessWidget {
                             const Icon(Icons.error),
                       ),
                     ),
-                  ),
-                );
-              });
+                  );
+                }),
+          );
         });
   }
 }
