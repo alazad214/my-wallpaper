@@ -13,10 +13,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("WP214"),
-        backgroundColor: AppColor.navy_,
-      ),
-      drawer: CustomDrawer(),
+          title: const Text(
+            "WP214",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+          ),
+          titleSpacing: 0,
+          backgroundColor: Colors.lightBlueAccent.withOpacity(0.4)),
+      drawer: const CustomDrawer(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
