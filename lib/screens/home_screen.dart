@@ -1,9 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wallpaper/widgets/drawer.dart';
-import 'details.dart';
+import 'package:wallpaper/widgets/single_wallpaper.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,89 +16,16 @@ class HomeScreen extends StatelessWidget {
           titleSpacing: 0,
           backgroundColor: Colors.lightBlueAccent.withOpacity(0.4)),
       drawer: const CustomDrawer(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 15,
-            right: 15,
-            top: 20,
-            bottom: 10,
-          ),
-          child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('images').snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return const Center(
-                  child: Text("Something wrong"),
-                );
-              }
-
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-
-              return GridView(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.65,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-                children: snapshot.data!.docs.map(
-                  (DocumentSnapshot document) {
-                    Map<String, dynamic> data =
-                        document.data()! as Map<String, dynamic>;
-                    return Hero(
-                      tag: data['img'],
-                      child: Material(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: InkWell(
-                            onTap: () => Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (_) => Details(
-                                    data['img'],
-                                  ),
-                                )),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl: data["img"],
-                              placeholder: (context, url) => const Center(
-                                  child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ).toList(),
-              );
-            },
+      body: const SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            child: Column(
+              children: [SingleWallpaper()],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-/*
-* InkWell(
-                            borderRadius: BorderRadius.circular(10),
-                            onTap: () => Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (_) => Details(
-                                    data['img'],
-                                  ),
-                                )),
-                          ),*/
