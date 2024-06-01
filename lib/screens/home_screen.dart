@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wallpaper/wallpaper_page/animals.dart';
-import 'package:wallpaper/wallpaper_page/latest.dart';
-import 'package:wallpaper/wallpaper_page/nature_wallpaper.dart';
-import 'package:wallpaper/wallpaper_page/populer.dart';
-import 'package:wallpaper/wallpaper_page/programming.dart';
-import 'package:wallpaper/wallpaper_page/status.dart';
-import 'package:wallpaper/wallpaper_page/tranding.dart';
 import 'package:wallpaper/widgets/custom_tabbar.dart';
 import 'package:wallpaper/widgets/drawer.dart';
 import 'package:wallpaper/widgets/single_wallpaper.dart';
@@ -50,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SingleWallpaper(),
+                const SizedBox(height: 20,),
                 CustomTabbar(),
               ],
             ),

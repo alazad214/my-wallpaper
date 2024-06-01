@@ -79,9 +79,8 @@ class _CustomTabbarState extends State<CustomTabbar>
                 ),
               ]),
         ),
-        Container(
+        SizedBox(
           height: h / 1,
-          color: Colors.greenAccent,
           child: TabBarView(
             controller: tabController,
             children: pages,
