@@ -41,8 +41,12 @@ dependencies:
   firebase_auth:
   firebase_storage: ^11.6.9
   cloud_firestore: ^4.15.8
-  firebase_messaging: ^14.7.19
-  carousel_slider: ^4.2.1
+  fluttertoast: ^8.2.5
+  simple_speed_dial: ^0.1.7
+  flutter_wallpaper_manager: ^0.0.4
+  flutter_cache_manager:
+  image_downloader: ^0.31.0
+  share_plus:
   cached_network_image: ^3.3.1
 
 
