@@ -24,15 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
           titleSpacing: 0,
           backgroundColor: Colors.lightBlueAccent.withOpacity(0.4)),
       drawer: const CustomDrawer(),
-      body: SafeArea(
+      body: const SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
+            padding: EdgeInsets.symmetric(horizontal: 5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Text(
                     "Most Favourite",
@@ -42,8 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SingleWallpaper(),
-                const SizedBox(height: 20,),
+                SingleWallpaper(),
+                SizedBox(height: 20,),
                 CustomTabbar(),
               ],
             ),

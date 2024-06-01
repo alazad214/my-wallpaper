@@ -23,6 +23,12 @@ class CustomDrawer extends StatelessWidget {
             () {
               Navigator.pop(context);
             },
+          ), customListtile(
+            Icons.home,
+            "F A V A U R I T E",
+            () {
+              Navigator.pop(context);
+            },
           ),
           customListtile(
             Icons.settings,

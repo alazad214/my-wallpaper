@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wallpaper/screens/details.dart';
 
 class Tranding extends StatelessWidget {
   const Tranding({super.key});
@@ -15,7 +17,7 @@ class Tranding extends StatelessWidget {
                 FirebaseFirestore.instance.collection("tranding").snapshots(),
             builder: (_, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               }
 
               return GridView.builder(
@@ -31,13 +33,15 @@ class Tranding extends StatelessWidget {
                     final data = snapshot.data!.docs[index];
 
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => Details(data["img"]));
+                      },
                       child: Container(
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
-                            color: Colors.white38,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(width: 1, color: Colors.blue)),
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: CachedNetworkImage(
                           height: 100,
                           fit: BoxFit.cover,

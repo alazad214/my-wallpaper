@@ -1,16 +1,14 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
-import '../wallpaper_page/animals.dart';
+import 'package:flutter/material.dart';
+import '../wallpaper_page/islamic.dart';
 import '../wallpaper_page/latest.dart';
 import '../wallpaper_page/nature_wallpaper.dart';
 import '../wallpaper_page/populer.dart';
-import '../wallpaper_page/programming.dart';
 import '../wallpaper_page/status.dart';
 import '../wallpaper_page/tranding.dart';
 
 class CustomTabbar extends StatefulWidget {
-  CustomTabbar({
+  const CustomTabbar({
     super.key,
   });
 
@@ -26,15 +24,14 @@ class _CustomTabbarState extends State<CustomTabbar>
     Populer(),
     Latest(),
     Status(),
-    Islamic(),
-    Programming(),
+    IslamicWallpaper(),
     Nature(),
   ];
 
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 7, vsync: this);
+    tabController = TabController(length: 6, vsync: this);
   }
 
   @override
@@ -71,9 +68,7 @@ class _CustomTabbarState extends State<CustomTabbar>
                 Tab(
                   text: "Islamic",
                 ),
-                Tab(
-                  text: "Programming",
-                ),
+
                 Tab(
                   text: "Nature",
                 ),
