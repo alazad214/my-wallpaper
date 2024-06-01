@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wallpaper/utils/appcolor.dart';
+import 'package:wallpaper/widgets/drawer.dart';
 
 import 'details.dart';
 
@@ -10,6 +12,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("WP214"),
+        backgroundColor: AppColor.navy_,
+      ),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
