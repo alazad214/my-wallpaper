@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "726011282042",
+    "project_id": "mimetic-campus-405713",
+    "storage_bucket": "mimetic-campus-405713.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726011282042:android:0e98b85aa04685910031c3",
+        "android_client_info": {
+          "package_name": "com.example.wallpaper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQqWYqv2MevVheJFFLjhHWfZtPtkLH_dY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
