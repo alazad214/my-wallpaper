@@ -1,9 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wallpaper/utils/appcolor.dart';
 import 'package:wallpaper/widgets/drawer.dart';
-
 import 'details.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -59,18 +58,12 @@ class HomeScreen extends StatelessWidget {
                       tag: data['img'],
                       child: Material(
                         borderRadius: BorderRadius.circular(10),
-                        child: Ink(
+                        child: Container(
+                          clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                data['img'],
-                              ),
-                              fit: BoxFit.cover,
-                            ),
                           ),
                           child: InkWell(
-                            borderRadius: BorderRadius.circular(10),
                             onTap: () => Navigator.push(
                                 context,
                                 CupertinoPageRoute(
@@ -78,6 +71,14 @@ class HomeScreen extends StatelessWidget {
                                     data['img'],
                                   ),
                                 )),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: data["img"],
+                              placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
                           ),
                         ),
                       ),
@@ -92,3 +93,15 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+/*
+* InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () => Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (_) => Details(
+                                    data['img'],
+                                  ),
+                                )),
+                          ),*/

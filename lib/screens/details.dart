@@ -116,7 +116,7 @@ class Details extends StatelessWidget {
       body: Hero(
         tag: imgUrl,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
           alignment: Alignment.topLeft,
           height: double.infinity,
           width: double.infinity,
@@ -130,7 +130,7 @@ class Details extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
                 size: 35,
                 color: Colors.blue,
