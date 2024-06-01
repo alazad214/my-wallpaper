@@ -69,16 +69,13 @@ class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-      ),
       floatingActionButton: SpeedDial(
-        labelsBackgroundColor: Colors.blue,
+        openBackgroundColor: Colors.green,
+        labelsBackgroundColor: Colors.greenAccent,
         labelsStyle: const TextStyle(
           fontWeight: FontWeight.w600,
         ),
         speedDialChildren: [
-          //Set Homescreen
           SpeedDialChild(
             child: const Icon(
               Icons.wallpaper,
@@ -87,7 +84,6 @@ class Details extends StatelessWidget {
             label: 'Set Homescreen',
             onPressed: () => setWallpaperHomeScreen(imgUrl),
           ),
-          //Set Lockscreen
           SpeedDialChild(
             child: const Icon(
               Icons.lock,
@@ -96,7 +92,6 @@ class Details extends StatelessWidget {
             label: 'Set Lockscreen',
             onPressed: () => setWallpaperLockScreen(imgUrl),
           ),
-          //Download
           SpeedDialChild(
             child: const Icon(
               Icons.cloud_download,
@@ -105,7 +100,6 @@ class Details extends StatelessWidget {
             label: 'Download',
             onPressed: () => downloadWallpaper(imgUrl),
           ),
-          //Share
           SpeedDialChild(
             child: const Icon(
               Icons.share,
@@ -122,12 +116,25 @@ class Details extends StatelessWidget {
       body: Hero(
         tag: imgUrl,
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+          alignment: Alignment.topLeft,
+          height: double.infinity,
+          width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(imgUrl),
               fit: BoxFit.cover,
             ),
           ),
+          child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                size: 35,
+                color: Colors.blue,
+              )),
         ),
       ),
     );
