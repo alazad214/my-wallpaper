@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
           title: const Text(
-            "WP214",
+            "Wallpaper point",
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
           ),
           titleSpacing: 0,
@@ -35,15 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Text(
-                    "Most Favourite",
+                    "Favourite",
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
                 SingleWallpaper(),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 CustomTabbar(),
               ],
             ),

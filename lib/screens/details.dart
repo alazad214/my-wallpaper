@@ -5,6 +5,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_downloader/image_downloader.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 
@@ -33,37 +34,30 @@ class Details extends StatelessWidget {
     }
   }
 
-  downloadWallpaper(url) async {
-    try {
-      var imageId =
-          await ImageDownloader.downloadImage(url).catchError((error) {
-        if (error is PlatformException) {
-          var path = "";
-          if (error.code == "404") {
-            Fluttertoast.showToast(msg: 'Not Found Error.');
-          } else if (error.code == "unsupported_file") {
-            Fluttertoast.showToast(msg: 'UnSupported FIle Error.');
-            path = error.details["unsupported_file_path"];
-          }
-        }
-      });
-      if (imageId == null) {
-        return;
-      } else {
-        var path = await ImageDownloader.findPath(imageId);
-        Fluttertoast.showToast(msg: 'image saved to: $path');
-      }
-    } catch (e) {
-      Fluttertoast.showToast(
-        msg: 'failed',
-      );
-    }
-  }
-
   shareImage(url) {
     Share.share(
       url,
     );
+  }
+
+  downloadImage(url) async {
+    try {
+      // Request storage permission
+      var status = await Permission.storage.request();
+      if (status.isGranted) {
+        var imageId = await ImageDownloader.downloadImage(url);
+        if (imageId == null) {
+          Fluttertoast.showToast(msg: 'Failed to download image');
+          return;
+        }
+        var path = await ImageDownloader.findPath(imageId);
+        Fluttertoast.showToast(msg: 'Downloaded to $path');
+      } else {
+        Fluttertoast.showToast(msg: 'Permission denied');
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Failed to download image');
+    }
   }
 
   @override
@@ -98,7 +92,7 @@ class Details extends StatelessWidget {
               size: 18,
             ),
             label: 'Download',
-            onPressed: () => downloadWallpaper(imgUrl),
+            onPressed: () => downloadImage(imgUrl),
           ),
           SpeedDialChild(
             child: const Icon(

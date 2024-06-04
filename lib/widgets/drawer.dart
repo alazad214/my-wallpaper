@@ -14,7 +14,7 @@ class CustomDrawer extends StatelessWidget {
             decoration:
                 const BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
             clipBehavior: Clip.antiAlias,
-            child: Image.asset("assets/images/logo.png"),
+            child: Image.asset("assets/images/wallpaper.png"),
           ))),
           const SizedBox(height: 10),
           customListtile(
@@ -23,7 +23,8 @@ class CustomDrawer extends StatelessWidget {
             () {
               Navigator.pop(context);
             },
-          ), customListtile(
+          ),
+          customListtile(
             Icons.home,
             "F A V A U R I T E",
             () {

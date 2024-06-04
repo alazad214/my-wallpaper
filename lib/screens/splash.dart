@@ -14,7 +14,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.offAll(() =>  HomeScreen());
+      Get.offAll(() => const HomeScreen());
     });
     // TODO: implement initState
     super.initState();
@@ -29,8 +29,16 @@ class _SplashState extends State<Splash> {
         Container(
           height: screenSize.height / 1,
           alignment: Alignment.center,
-          child:
-              Center(child: Image.asset("assets/images/logo.png", height: 100)),
+          child: Center(
+              child: Container(
+                height: 100,
+                  width: 100,
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle
+                ),
+                  child:
+                      Image.asset("assets/images/wallpaper.png", height: 100))),
         )
       ],
     ));
